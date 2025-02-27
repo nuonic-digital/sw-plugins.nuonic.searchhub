@@ -1,0 +1,27 @@
+{% sw_extends '@Storefront/storefront/layout/header/search-suggest.html.twig' %}
+
+{% block layout_search_suggest_result_name %}
+    {% if page.searchHub.activeState %}
+        {% block layout_searchhub_suggest_result_name %}
+            <div class="col search-suggest-product-name" data-track-id="suggestSearchTerm">
+                {{ product.translated.name }}
+            </div>
+        {% endblock %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block layout_search_suggest_result_total_count %}
+    {% if page.searchHub.activeState %}
+        {% block layout_searchhub_suggest_result_total_count %}
+            <div class="col-auto search-suggest-total-count" data-track-id="resultCountContainer">
+                {{ 'header.searchResults'|trans({
+                    '%count%': page.searchResult.total,
+                })|sw_sanitize }}
+            </div>
+        {% endblock %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

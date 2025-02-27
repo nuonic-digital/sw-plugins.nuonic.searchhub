@@ -1,0 +1,29 @@
+{% sw_extends '@Storefront/storefront/page/search/index.html.twig' %}
+
+{% block page_search_headline %}
+    {% if page.searchHub.activeState %}
+        {% block page_searchhub_headline %}
+            {% if page.listing.total > 0 %}
+                <h1 class="search-headline text-center mb-4" data-track-id="resultCountContainer">
+                    {% block page_search_headline_text %}
+                        {{ 'search.headline'|trans({
+                            '%count%': page.listing.total,
+                            '%searchTerm%': page.searchTerm,
+                        }) }}
+                    {% endblock %}
+                </h1>
+            {% else %}
+                <h1 class="search-headline text-center mb-4" data-track-id="zeroResultsContainer">
+                    {% block page_search_headline_text %}
+                        {{ 'search.headline'|trans({
+                            '%count%': page.listing.total,
+                            '%searchTerm%': page.searchTerm,
+                        }) }}
+                    {% endblock %}
+                </h1>
+            {% endif %}
+        {% endblock %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% sw_extends '@Storefront/storefront/layout/header/search.html.twig' %}
+
+{% block layout_header_search_input %}
+    {% if page.searchHub.activeState %}
+        {% block layout_header_searchhub_input %}
+            <input type="search"
+                   id="header-main-search-input"
+                   name="search"
+                   class="form-control header-search-input"
+                   autocomplete="off"
+                   autocapitalize="off"
+                   placeholder="{{ 'header.searchPlaceholder'|trans|striptags }}"
+                   aria-label="{{ 'header.searchPlaceholder'|trans|striptags }}"
+                   value="{{ page.searchTerm }}"
+                   data-track-id="searchBox">
+        {% endblock %}
+        {% else %}
+            {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block layout_header_search_button %}
+    {% if page.searchHub.activeState %}
+        {% block layout_header_searchhub_button %}
+            <button type="submit"
+                    class="btn header-search-btn"
+                    aria-label="{{ 'header.searchButton'|trans|striptags }}"
+                    data-track-id="searchButton">
+                <span class="header-search-icon">
+                    {% sw_icon 'search' %}
+                </span>
+            </button>
+        {% endblock %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+{% block layout_head_javascript_jquery %}
+    {{ parent() }}
+
+    {% block layout_head_searchhub_script %}
+        {% set scriptId = page.searchHub.scriptId %}
+
+        {% if page.searchHub.activeState %}
+            <script defer src="https://c.searchhub.io/{{ scriptId }}"></script>
+        {% endif %}
+    {% endblock %}
+{% endblock %}
