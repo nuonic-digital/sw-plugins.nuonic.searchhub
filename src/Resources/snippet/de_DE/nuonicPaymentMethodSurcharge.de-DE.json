@@ -1,5 +1,5 @@
 {
-  "nuonicPaymentMethodSurcharge": {
+  "nuonicSearchHubIntegration": {
     "defaultLineItemLabel": "Zahlungsart-Aufschlag"
   }
 }

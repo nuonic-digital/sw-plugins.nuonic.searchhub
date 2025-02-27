@@ -2,29 +2,49 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/System/SystemConfig/Schema/config.xsd">
     <card>
-        <title>Payment method surcharge settings</title>
-        <title lang="de-DE">Zahlungsart-Aufschlag Einstellungen</title>
+        <title>SearchHub Einstellungen</title>
+        <title lang="de-DE">SearchHub settings</title>
 
-        <component name="sw-entity-multi-id-select">
-            <name>paymentMethodIds</name>
-            <entity>payment_method</entity>
-            <label>Choose a payment method for the surcharge</label>
-            <label lang="de-DE">Zahlungsarten für Aufschlag wählen</label>
-        </component>
+        <input-field type="bool">
+            <name>nuonicSearchHubActiveState</name>
+            <label>Activate SearchHub?</label>
+            <label lang="de-DE">SearchHub aktivieren?</label>
+        </input-field>
 
-        <input-field type="float">
-            <name>chargePercentage</name>
-            <label>Payment method charge percentage</label>
-            <label lang="de-DE">Aufschlag in Prozent</label>
-            <placeholder>0</placeholder>
-            <defaultValue>0</defaultValue>
-            <required>true</required>
+        <input-field type="bool">
+            <name>nuonicSearchHubSmartQueryState</name>
+            <label>Activate SmartQuery</label>
+            <label lang="de-DE">SmartQuery aktivieren?</label>
+        </input-field>
+
+        <input-field type="bool">
+            <name>nuonicSearchHubSmartSuggestState</name>
+            <label>Activate SmartSuggest</label>
+            <label lang="de-DE">SmartSuggest aktivieren?</label>
         </input-field>
 
         <input-field type="text">
-            <name>chargeLineItemLabel</name>
-            <label>Label of the surcharge line item</label>
-            <label lang="de-DE">Name der Aufschlags-Position</label>
+            <name>nuonicSearchHubScriptId</name>
+            <label>Script ID</label>
+            <label lang="de-DE">Script ID</label>
+        </input-field>
+
+        <input-field type="text">
+            <name>nuonicSearchHubServiceUrl</name>
+            <label>Service URL</label>
+            <label lang="de-DE">Service URL</label>
+        </input-field>
+
+        <input-field type="text">
+            <name>nuonicSearchHubTenantName</name>
+            <label>Tenant name</label>
+            <label lang="de-DE">Mandanten Name</label>
+        </input-field>
+
+        <input-field type="text">
+            <name>nuonicSearchHubTenantChannel</name>
+            <label>Tenant channel</label>
+            <label lang="de-DE">Mandanten Channel</label>
         </input-field>
     </card>
 </config>

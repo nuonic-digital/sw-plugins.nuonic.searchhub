@@ -15,12 +15,12 @@
         "author": "nuonic Digital GmbH & Co. KG",
         "shopware-plugin-class": "NuonicSearchHubIntegration\\NuonicSearchHubIntegration",
         "label": {
-            "de-DE": "Zahlungsart-Aufschlag",
-            "en-GB": "Payment method surcharge"
+            "de-DE": "SearchHub Integration",
+            "en-GB": "SearchHub Integration"
         },
         "description": {
-            "de-DE": "Sofern du für bestimmte Zahlungsarten einen prozentualen Aufschlag des Warenkorbs erheben möchtest, kannst du dies mit dieser Erweiterung einfach und unkompliziert tun.",
-            "en-GB": "If you want to add a percentage surcharge to the shopping cart for certain payment methods, you can do this with this extension. Use the extensions settings to setup your surchage."
+            "de-DE": "Offizielle Integartion für die Suche und Suchvorschläge über SearchHub.",
+            "en-GB": "Official integration for search and search suggestions via SearchHub."
         },
         "manufacturerLink": {
             "de-DE": "https://nuonic.de",
@@ -40,7 +40,7 @@
     },
     "autoload": {
         "psr-4": {
-            "NuonicPaymentMethodSurcharge\\": "src/"
+            "NuonicSearchHubIntegration\\": "src/"
         }
     },
     "scripts": {
