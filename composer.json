@@ -1,0 +1,56 @@
+{
+    "name": "nuonic/searchhub-integration",
+    "description": "SearchHub Integration",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "nuonic Digital GmbH & Co. KG",
+            "homepage": "https://nuonic.de"
+        }
+    ],
+    "extra": {
+        "copyright": "nuonic Digital GmbH & Co. KG",
+        "author": "nuonic Digital GmbH & Co. KG",
+        "shopware-plugin-class": "NuonicSearchHubIntegration\\NuonicSearchHubIntegration",
+        "label": {
+            "de-DE": "Zahlungsart-Aufschlag",
+            "en-GB": "Payment method surcharge"
+        },
+        "description": {
+            "de-DE": "Sofern du für bestimmte Zahlungsarten einen prozentualen Aufschlag des Warenkorbs erheben möchtest, kannst du dies mit dieser Erweiterung einfach und unkompliziert tun.",
+            "en-GB": "If you want to add a percentage surcharge to the shopping cart for certain payment methods, you can do this with this extension. Use the extensions settings to setup your surchage."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://nuonic.de",
+            "en-GB": "https://nuonic.de"
+        },
+        "supportLink": {
+            "de-DE": "https://nuonic.de",
+            "en-GB": "https://nuonic.de"
+        }
+    },
+    "require": {
+        "shopware/core": ">=6.6.0 <6.7.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1.2",
+        "friendsofphp/php-cs-fixer": "^3.66"
+    },
+    "autoload": {
+        "psr-4": {
+            "NuonicPaymentMethodSurcharge\\": "src/"
+        }
+    },
+    "scripts": {
+        "phpstan": "phpstan analyse --memory-limit=2G",
+        "style-check": "php-cs-fixer check",
+        "style-fix": "php-cs-fixer fix"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": true
+        }
+    }
+}
