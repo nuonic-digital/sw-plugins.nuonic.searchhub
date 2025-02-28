@@ -1,0 +1,22 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+ {% block page_checkout_confirm_form_submit %}
+     {% if page.searchHub.activeState %}
+         {% block page_checkout_confirm_form_searchhub_submit %}
+             <div class="d-grid">
+                 <button id="confirmFormSubmit"
+                         class="btn btn-primary btn-lg"
+                         form="confirmOrderForm"
+                         {% if page.cart.errors.blockResubmit %}
+                             disabled
+                         {% endif %}
+                         type="submit"
+                         data-track-id="checkoutButton">
+                     {{ 'checkout.confirmSubmit'|trans|sw_sanitize }}
+                 </button>
+             </div>
+         {% endblock %}
+     {% else %}
+         {{ parent() }}
+     {% endif %}
+ {% endblock %}

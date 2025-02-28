@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/component/line-item/element/quantity.html.twig' %}
+
+{% block component_line_item_quantity_select %}
+    {% if page.searchHub.activeState %}
+        {% block component_line_item_quantity_searchhub_select %}
+            <fieldset data-track-id="checkoutQuantity">
+                {% block component_line_item_quantity_select_input %}
+                    {{ parent() }}
+                {% endblock %}
+            </fieldset>
+        {% endblock %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
