@@ -14,7 +14,7 @@
                 </h1>
             {% else %}
                 <h1 class="search-headline text-center mb-4" data-track-id="zeroResultsContainer">
-                    {% block page_search_headline_text %}
+                    {% block page_search_headline_zero_results_text %}
                         {{ 'search.headline'|trans({
                             '%count%': page.listing.total,
                             '%searchTerm%': page.searchTerm,

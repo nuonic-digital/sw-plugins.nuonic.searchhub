@@ -1,0 +1,23 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{% block component_product_box %}
+    {% if page.searchHub.activeState %}
+        {% block component_product_searchhub_box %}
+            {% if product %}
+                {% set name = product.translated.name %}
+                {% set id = product.id %}
+                {% set cover = product.cover.media %}
+                {% set variation = product.variation %}
+                {% set displayParent = product.variantListingConfig.displayParent and product.parentId === null %}
+
+                <div class="card product-box box-{{ layout }}" data-product-information="{{ {id, name}|json_encode }}" data-track-id="product" data-product-id="{{ id }}">
+                    {% block component_product_box_content %}
+                        {{ parent() }}
+                    {% endblock %}
+                </div>
+            {% endif %}
+        {% endblock %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
