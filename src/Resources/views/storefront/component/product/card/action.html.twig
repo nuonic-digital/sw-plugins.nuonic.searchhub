@@ -1,0 +1,19 @@
+{% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
+
+{% block page_product_detail_product_buy_button %}
+    {% if page.searchHub.activeState %}
+        {% block page_product_detail_product_searchhub_buy_button %}
+            <div class="d-grid" data-track-id="addToCartPDP" data-product-id="{{ id }}">
+                <span itemprop="searchhub-quantity" data-track-id="addToBasketQuantity" class="d-none">1</span>
+                <button class="btn btn-buy"
+                        title="{{ 'listing.boxAddProduct'|trans|striptags }}">
+                    {% block page_product_detail_product_buy_button_label %}
+                        {{ 'listing.boxAddProduct'|trans|sw_sanitize }}
+                    {% endblock %}
+                </button>
+            </div>
+        {% endblock %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
