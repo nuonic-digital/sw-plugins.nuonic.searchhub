@@ -1,0 +1,25 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-slider.html.twig' %}
+
+ {% block element_product_slider_element %}
+     {% if page.searchHub.activeState %}
+         {% block element_product_slider_searchhub_element %}
+             <div class="product-slider-container"
+                  data-product-slider-container="true">
+
+                 {% for product in element.data.products.elements %}
+                     {% block element_product_slider_inner_item %}
+                         <div class="product-slider-item">
+                             {% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+                                 'layout': sliderConfig.boxLayout.value,
+                                 'displayMode': sliderConfig.displayMode.value,
+                                 isSearchHubCrossSelling: true
+                             } %}
+                         </div>
+                     {% endblock %}
+                 {% endfor %}
+             </div>
+         {% endblock %}
+     {% else %}
+         {{ parent() }}
+     {% endif %}
+ {% endblock %}

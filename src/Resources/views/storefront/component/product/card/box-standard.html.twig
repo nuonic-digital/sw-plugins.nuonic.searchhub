@@ -6,11 +6,12 @@
             {% if product %}
                 {% set name = product.translated.name %}
                 {% set id = product.id %}
+                {% set searchHubId = product.productNumber %}
                 {% set cover = product.cover.media %}
                 {% set variation = product.variation %}
                 {% set displayParent = product.variantListingConfig.displayParent and product.parentId === null %}
 
-                <div class="card product-box box-{{ layout }}" data-product-information="{{ {id, name}|json_encode }}" data-track-id="product" data-product-id="{{ id }}">
+                <div class="card product-box box-{{ layout }}" data-product-information="{{ {id, name}|json_encode }}"  {% if isSearchHubCrossSelling %}data-track-id="associatedProduct"{% else %}data-track-id="product" {% endif %} data-product-id="{{ searchHubId }}">
                     {% block component_product_box_content %}
                         {{ parent() }}
                     {% endblock %}

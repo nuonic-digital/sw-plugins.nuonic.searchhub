@@ -1,0 +1,20 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-cross-selling.html.twig' %}
+
+{% block cms_element_cross_selling_tabs_content_container_slider %}
+    {% if page.searchHub.activeState %}
+        {% block cms_element_cross_selling_tabs_content_searchhub_container_slider %}
+            {% sw_include "@Storefront/storefront/element/cms-element-product-slider.html.twig" with {
+                sliderConfig: config,
+                element: {
+                    'data': {
+                        'products': products
+                    },
+                    type: 'product-slider',
+                },
+                isSearchHubCrossSelling: true
+            } %}
+        {% endblock %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
