@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace NuonicSearchHubIntegration\Content\Product\SalesChannel\Search;
 
 use NuonicSearchHubIntegration\Client\SearchHubClient;
+use NuonicSearchHubIntegration\Config\PluginConfigService;
 use Shopware\Core\Content\Product\SalesChannel\Search\AbstractProductSearchRoute;
 use Shopware\Core\Content\Product\SalesChannel\Search\ProductSearchRouteResponse;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -18,6 +19,7 @@ class SearchHubSmartQueryRoute extends AbstractProductSearchRoute
     public function __construct(
         private readonly AbstractProductSearchRoute $decorated,
         private readonly SearchHubClient $client,
+        private readonly PluginConfigService $config,
     ) {
     }
 
@@ -34,6 +36,11 @@ class SearchHubSmartQueryRoute extends AbstractProductSearchRoute
     )]
     public function load(Request $request, SalesChannelContext $context, Criteria $criteria): ProductSearchRouteResponse
     {
+        // if the smartQuery feature is not enabled, skip
+        if (!$this->config->getBool('smartQueryState')) {
+            return $this->decorated->load($request, $context, $criteria);
+        }
+
         if (!$request->query->has('search')) {
             throw RoutingException::missingRequestParameter('search');
         }

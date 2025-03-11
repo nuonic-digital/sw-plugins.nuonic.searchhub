@@ -25,6 +25,7 @@
         >
             <argument type="service" id="NuonicSearchHubIntegration\Content\Product\SalesChannel\Search\SearchHubSmartQueryRoute.inner"/>
             <argument type="service" id="NuonicSearchHubIntegration\Client\SearchHubClient" />
+            <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
         </service>
 
         <service id="NuonicSearchHubIntegration\Client\ClientFactory">

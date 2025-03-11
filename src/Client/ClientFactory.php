@@ -23,7 +23,7 @@ readonly class ClientFactory
             $this->httpClient,
             $this->logger,
             new ClientConfiguration(
-                $this->config->getString('baseUrl'),
+                $this->config->getString('serviceUrl'),
                 $this->config->get('tenantName') ?? 'test',
                 $this->config->get('tenantChannel') ?? 'working'
             )
