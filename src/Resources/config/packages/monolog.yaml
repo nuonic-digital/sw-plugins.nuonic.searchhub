@@ -6,3 +6,4 @@ monolog:
       path: "%kernel.logs_dir%/nuonic_searchhub_integration_%kernel.environment%.log"
       level: error
       channels: [ "nuonic_searchhub_integration" ]
+
