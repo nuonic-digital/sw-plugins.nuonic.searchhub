@@ -1,7 +1,10 @@
 {% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
 
+{# shopware-block: 2c2fd40c2dcdaa928110bd8a1b5ef4f0d0a77222cbc86272851c8a2ad7358108@v6.6.9.0 #}
 {% block component_product_box %}
-    {% if page.searchHub.activeState %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+
+    {% if page.hasExtension(extensionName) %}
         {% block component_product_searchhub_box %}
             {% if product %}
                 {% set name = product.translated.name %}
@@ -11,7 +14,7 @@
                 {% set variation = product.variation %}
                 {% set displayParent = product.variantListingConfig.displayParent and product.parentId === null %}
 
-                <div class="card product-box box-{{ layout }}" data-product-information="{{ {id, name}|json_encode }}"  {% if isSearchHubCrossSelling %}data-track-id="associatedProduct"{% else %}data-track-id="product" {% endif %} data-product-id="{{ searchHubId }}">
+                <div class="card product-box box-{{ layout }}" data-product-information="{{ {id, name}|json_encode }}"{% if isSearchHubCrossSelling % }data-track-id="associatedProduct"{% else %} data-track-id="product"{% endif %} data-product-id="{{ searchHubId }}">
                     {% block component_product_box_content %}
                         {{ parent() }}
                     {% endblock %}

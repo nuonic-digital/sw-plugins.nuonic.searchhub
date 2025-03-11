@@ -1,13 +1,15 @@
 {% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
 
+{# shopware-block: 9e96da3a6fa70b9078d4085668e0aac1129ddc83907cd3cd042d9cd9c053f153@v6.6.9.0 #}
 {% block layout_head_javascript_jquery %}
     {{ parent() }}
 
-    {% block layout_head_searchhub_script %}
-        {% set scriptId = page.searchHub.scriptId %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
-        {% if page.searchHub.activeState %}
+    {% if page.hasExtension(extensionName) %}
+        {% block layout_head_searchhub_script %}
+            {% set scriptId = page.getExtension(extensionName).scriptId %}
             <script defer src="https://c.searchhub.io/{{ scriptId }}"></script>
-        {% endif %}
-    {% endblock %}
+        {% endblock %}
+    {% endif %}
 {% endblock %}

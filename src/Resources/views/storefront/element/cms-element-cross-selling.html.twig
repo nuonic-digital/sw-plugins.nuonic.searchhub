@@ -1,7 +1,10 @@
 {% sw_extends '@Storefront/storefront/element/cms-element-cross-selling.html.twig' %}
 
+{# shopware-block: 2b1a076b5ca7f41a270aefbbaaa77afea9006719e79be499a5d73ac0b19ff19a@v6.6.9.0 #}
 {% block cms_element_cross_selling_tabs_content_container_slider %}
-    {% if page.searchHub.activeState %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+
+    {% if page.hasExtension(extensionName) %}
         {% block cms_element_cross_selling_tabs_content_searchhub_container_slider %}
             {% sw_include "@Storefront/storefront/element/cms-element-product-slider.html.twig" with {
                 sliderConfig: config,

@@ -1,22 +1,25 @@
 {% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
 
- {% block page_checkout_confirm_form_submit %}
-     {% if page.searchHub.activeState %}
-         {% block page_checkout_confirm_form_searchhub_submit %}
-             <div class="d-grid">
-                 <button id="confirmFormSubmit"
-                         class="btn btn-primary btn-lg"
-                         form="confirmOrderForm"
-                         {% if page.cart.errors.blockResubmit %}
-                             disabled
-                         {% endif %}
-                         type="submit"
-                         data-track-id="checkoutButton">
-                     {{ 'checkout.confirmSubmit'|trans|sw_sanitize }}
-                 </button>
-             </div>
-         {% endblock %}
-     {% else %}
-         {{ parent() }}
-     {% endif %}
- {% endblock %}
+ {# shopware-block: 4af14bfe03c7f596186c0ae8a9518892ec60deff157e33869575718fa474f757@v6.6.9.0 #}
+{% block page_checkout_confirm_form_submit %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+
+    {% if page.hasExtension(extensionName) %}
+        {% block page_checkout_confirm_form_searchhub_submit %}
+            <div class="d-grid">
+                <button id="confirmFormSubmit"
+                        class="btn btn-primary btn-lg"
+                        form="confirmOrderForm"
+                        {% if page.cart.errors.blockResubmit %}
+                            disabled
+                        {% endif %}
+                        type="submit"
+                        data-track-id="checkoutButton">
+                    {{ 'checkout.confirmSubmit'|trans|sw_sanitize }}
+                </button>
+            </div>
+        {% endblock %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

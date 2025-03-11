@@ -1,7 +1,10 @@
 {% sw_extends '@Storefront/storefront/component/line-item/element/quantity.html.twig' %}
 
+{# shopware-block: 5cc710f9f9c25b4c5d3cf9c7970f445bf0897cab027dab14771d37cad10d2b78@v6.6.9.0 #}
 {% block component_line_item_quantity_select %}
-    {% if page.searchHub.activeState %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+
+    {% if page.hasExtension(extensionName) %}
         {% block component_line_item_quantity_searchhub_select %}
             <fieldset data-track-id="checkoutQuantity">
                 {% block component_line_item_quantity_select_input %}

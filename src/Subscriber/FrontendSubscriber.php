@@ -1,50 +1,46 @@
 <?php
+
 declare(strict_types=1);
 
 namespace NuonicSearchHubIntegration\Subscriber;
 
+use NuonicSearchHubIntegration\Config\PluginConfigService;
+use NuonicSearchHubIntegration\Extension\SearchHubPageExtension;
 use Shopware\Storefront\Page\GenericPageLoadedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Shopware\Core\System\SystemConfig\SystemConfigService;
 
-
-class FrontendSubscriber implements EventSubscriberInterface
+readonly class FrontendSubscriber implements EventSubscriberInterface
 {
+    public function __construct(
+        private PluginConfigService $config,
+    ) {
+    }
 
-	private SystemConfigService $systemConfigService;
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            GenericPageLoadedEvent::class => 'onRender',
+        ];
+    }
 
-	public function __construct(SystemConfigService $systemConfigService)
-	{
-		$this->systemConfigService = $systemConfigService;
-	}
+    public function onRender(GenericPageLoadedEvent $event): void
+    {
+        $salesChannelId = null;
+        $page = $event->getPage();
 
-	/**
-	 * @inheritDoc
-	 */
-	public static function getSubscribedEvents(): array
-	{
-		return [
-			GenericPageLoadedEvent::class => 'onRender',
-		];
-	}
+        $activeState = $this->config->getBool('activeState', $salesChannelId);
+        if (!$activeState) {
+            return;
+        }
 
-	public function onRender(GenericPageLoadedEvent $event)
-	{
-		$salesChannelId = null;
-		$page = $event->getPage();
+        $smartQueryState = $this->config->getBool('smartQueryState', $salesChannelId);
+        $smartSuggestState = $this->config->getBool('smartSuggestState', $salesChannelId);
+        $scriptId = $this->config->getString('scriptId', $salesChannelId);
 
-		$activeState = $this->systemConfigService->get('NuonicSearchHubIntegration.config.nuonicSearchHubActiveState', $salesChannelId);
-		$smartQueryState = $this->systemConfigService->get('NuonicSearchHubIntegration.config.nuonicSearchHubSmartQueryState', $salesChannelId);
-		$smartSuggestState = $this->systemConfigService->get('NuonicSearchHubIntegration.config.nuonicSearchHubSmartSuggestState', $salesChannelId);
-		$scriptId = $this->systemConfigService->get('NuonicSearchHubIntegration.config.nuonicSearchHubScriptId', $salesChannelId);
-
-		$page->assign([
-			'searchHub' => [
-				'activeState' => $activeState,
-				'smartQueryState' => $smartQueryState,
-				'smartSuggestState' => $smartSuggestState,
-				'scriptId' => $scriptId,
-			]
-		]);
-	}
+        $page->addExtension(SearchHubPageExtension::EXTENSION_NAME, new SearchHubPageExtension(
+            $smartQueryState,
+            $smartSuggestState,
+            $scriptId,
+        ));
+    }
 }

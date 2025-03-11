@@ -1,7 +1,10 @@
 {% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
 
+{# shopware-block: 9eb153cb569ac41e0e7096f9ea59df49957e7ba97bfc3adf1765b81db872db03@v6.6.9.0 #}
 {% block page_product_detail_product_buy_button %}
-    {% if page.searchHub.activeState %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+
+    {% if page.hasExtension(extensionName) %}
         {% block page_product_detail_product_searchhub_buy_button %}
             {% set searchHubId = product.productNumber %}
 

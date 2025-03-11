@@ -1,7 +1,10 @@
 {% sw_extends '@Storefront/storefront/layout/header/search-suggest.html.twig' %}
 
+{# shopware-block: 70dda0417dd9490f05ca7aa075c9d94c0f8ec2ce75f6c25a37efd1a5d662ca73@v6.6.9.0 #}
 {% block layout_search_suggest_result_name %}
-    {% if page.searchHub.activeState %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+
+    {% if page.hasExtension(extensionName) %}
         {% block layout_searchhub_suggest_result_name %}
             <div class="col search-suggest-product-name" data-track-id="suggestSearchTerm">
                 {{ product.translated.name }}
@@ -12,8 +15,11 @@
     {% endif %}
 {% endblock %}
 
+{# shopware-block: b25df5a649667e8eb91da59ddf79c4cd057dbd1912b79ff75ae1bddbfaad595b@v6.6.9.0 #}
 {% block layout_search_suggest_result_total_count %}
-    {% if page.searchHub.activeState %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+
+    {% if page.hasExtension(extensionName) %}
         {% block layout_searchhub_suggest_result_total_count %}
             <div class="col-auto search-suggest-total-count" data-track-id="resultCountContainer">
                 {{ 'header.searchResults'|trans({

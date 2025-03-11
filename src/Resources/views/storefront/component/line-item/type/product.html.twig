@@ -1,7 +1,10 @@
 {% sw_extends '@Storefront/storefront/component/line-item/type/product.html.twig' %}
 
+{# shopware-block: 7db24a65023dbdc2fea83b89fb5e49473d2fdefa6fe7238b8041e7cf9790bfbd@v6.6.9.0 #}
 {% block component_line_item_type_product %}
-    {% if page.searchHub.activeState %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+
+    {% if page.hasExtension(extensionName) %}
         {% block component_line_item_type_searchhub_product %}
             {# @deprecated tag:v6.7.0 - Line item wrapper element will be `<li>` element instead of `<div>` #}
             {%- if feature('ACCESSIBILITY_TWEAKS') -%}
@@ -24,8 +27,11 @@
     {% endif %}
 {% endblock %}
 
+{# shopware-block: 97ba73ca6f8ab60d634d6d1dd3a8333b57ca523cc75b33fee044aeb068aabe2c@v6.6.9.0 #}
 {% block component_line_item_type_product_number %}
-    {% if page.searchHub.activeState %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+
+    {% if page.hasExtension(extensionName) %}
         {% block component_line_item_type_searchhub_product_number %}
             { <div class="line-item-product-number" data-product-id="{{ lineItem.payload.productNumber }}">
             {{ 'checkout.cartItemInfoId'|trans|sw_sanitize }} {{ lineItem.payload.productNumber }}

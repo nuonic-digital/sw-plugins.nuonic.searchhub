@@ -1,7 +1,10 @@
 {% sw_extends '@Storefront/storefront/element/cms-element-product-slider.html.twig' %}
 
- {% block element_product_slider_element %}
-     {% if page.searchHub.activeState %}
+ {# shopware-block: 4d51b7dadd286250e89c1d4e63ec37a3f740e0b24cfa9edd7d215f2fb1be317e@v6.6.9.0 #}
+{% block element_product_slider_element %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+
+    {% if page.hasExtension(extensionName) %}
          {% block element_product_slider_searchhub_element %}
              <div class="product-slider-container"
                   data-product-slider-container="true">

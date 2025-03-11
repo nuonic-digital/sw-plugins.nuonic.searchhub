@@ -1,7 +1,10 @@
 {% sw_extends '@Storefront/storefront/page/search/index.html.twig' %}
 
+{# shopware-block: efee6956345c7e97f9fac074948e6560be8d5c0ad24b89f098086e73490c7810@v6.6.9.0 #}
 {% block page_search_headline %}
-    {% if page.searchHub.activeState %}
+    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+
+    {% if page.hasExtension(extensionName) %}
         {% block page_searchhub_headline %}
             {% if page.listing.total > 0 %}
                 <h1 class="search-headline text-center mb-4" data-track-id="resultCountContainer">
