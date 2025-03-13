@@ -11,6 +11,7 @@
 
         <service id="NuonicSearchHubIntegration\Subscriber\FrontendSubscriber">
             <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
+            <argument type="service" id="NuonicSearchHubIntegration\Client\ClientFactory" />
             <tag name="kernel.event_subscriber"/>
         </service>
 
@@ -20,7 +21,7 @@
                  public="true"
         >
             <argument type="service" id="NuonicSearchHubIntegration\Content\Product\SalesChannel\Search\SearchHubSmartQueryRoute.inner"/>
-            <argument type="service" id="NuonicSearchHubIntegration\Client\SearchHubClient" />
+            <argument type="service" id="NuonicSearchHubIntegration\Client\ClientFactory" />
             <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
         </service>
 
@@ -28,10 +29,6 @@
             <argument type="service" id="http_client" />
             <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
             <argument type="service" id="monolog.logger.nuonic_searchhub_integration" />
-        </service>
-
-        <service id="NuonicSearchHubIntegration\Client\SearchHubClient">
-            <factory service="NuonicSearchHubIntegration\Client\ClientFactory" method="make" />
         </service>
     </services>
 </container>

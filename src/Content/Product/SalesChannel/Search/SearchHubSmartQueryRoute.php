@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace NuonicSearchHubIntegration\Content\Product\SalesChannel\Search;
 
-use NuonicSearchHubIntegration\Client\SearchHubClient;
+use NuonicSearchHubIntegration\Client\ClientFactory;
+use NuonicSearchHubIntegration\Config\ConfigValue;
 use NuonicSearchHubIntegration\Config\PluginConfigService;
 use Shopware\Core\Content\Product\SalesChannel\Search\AbstractProductSearchRoute;
 use Shopware\Core\Content\Product\SalesChannel\Search\ProductSearchRouteResponse;
@@ -16,9 +17,11 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class SearchHubSmartQueryRoute extends AbstractProductSearchRoute
 {
+    private const QUERY_KEY = 'search';
+
     public function __construct(
         private readonly AbstractProductSearchRoute $decorated,
-        private readonly SearchHubClient $client,
+        private readonly ClientFactory $clientFactory,
         private readonly PluginConfigService $config,
     ) {
     }
@@ -37,19 +40,27 @@ class SearchHubSmartQueryRoute extends AbstractProductSearchRoute
     public function load(Request $request, SalesChannelContext $context, Criteria $criteria): ProductSearchRouteResponse
     {
         // if the smartQuery feature is not enabled, skip
-        if (!$this->config->getBool('smartQueryState')) {
+        if (!$this->config->getBool(ConfigValue::SMART_QUERY_STATE)) {
             return $this->decorated->load($request, $context, $criteria);
         }
 
-        if (!$request->query->has('search')) {
-            throw RoutingException::missingRequestParameter('search');
+        if (!$request->query->has(self::QUERY_KEY)) {
+            throw RoutingException::missingRequestParameter(self::QUERY_KEY);
         }
 
+        $userSearch = $request->get(self::QUERY_KEY);
+
         $request->query->set(
-            'search',
-            $this->client->smartQuery($request->get('search')),
+            self::QUERY_KEY,
+            $this->clientFactory->make(
+                $context->getSalesChannelId()
+            )->smartQuery($userSearch),
         );
 
-        return $this->decorated->load($request, $context, $criteria);
+        $result = $this->decorated->load($request, $context, $criteria);
+
+        $request->query->set(self::QUERY_KEY, $userSearch);
+
+        return $result;
     }
 }

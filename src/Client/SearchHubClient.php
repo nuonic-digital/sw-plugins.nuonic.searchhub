@@ -23,7 +23,6 @@ readonly class SearchHubClient
         $this->httpClient = $httpClient->withOptions([
             'base_uri' => $configuration->baseUrl,
             'timeout' => 1,
-            'connect_timeout' => 1,
             'headers' => [
                 'User-Agent' => 'NuonicSearchHubIntegration/Shopware6 1.0',
             ],
@@ -48,6 +47,30 @@ readonly class SearchHubClient
             $this->logger->error($e);
 
             return $userQuery;
+        }
+    }
+
+    /**
+     * @return string[]
+     */
+    public function smartSuggest(string $userQuery): array
+    {
+        try {
+            $response = $this->httpClient->request('GET', sprintf(
+                '/smartsuggest/v2/%s/%s',
+                $this->configuration->tenantName,
+                $this->configuration->tenantChannel
+            ), [
+                'query' => [
+                    'userQuery' => $userQuery,
+                ],
+            ]);
+
+            return $response->toArray();
+        } catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            $this->logger->error($e);
+
+            return [];
         }
     }
 }

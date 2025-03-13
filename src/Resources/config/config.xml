@@ -2,25 +2,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/System/SystemConfig/Schema/config.xsd">
     <card>
-        <title>SearchHub Einstellungen</title>
-        <title lang="de-DE">SearchHub settings</title>
+        <title>Frontend tracking integration</title>
+        <title lang="de-DE">Frontend Tracking-Integration</title>
 
-        <input-field type="bool">
+        <input-field type="checkbox">
             <name>activeState</name>
-            <label>Activate SearchHub?</label>
-            <label lang="de-DE">SearchHub aktivieren?</label>
-        </input-field>
-
-        <input-field type="bool">
-            <name>smartQueryState</name>
-            <label>Activate SmartQuery</label>
-            <label lang="de-DE">SmartQuery aktivieren?</label>
-        </input-field>
-
-        <input-field type="bool">
-            <name>smartSuggestState</name>
-            <label>Activate SmartSuggest</label>
-            <label lang="de-DE">SmartSuggest aktivieren?</label>
+            <label>Tracking enabled</label>
+            <label lang="de-DE">Tracking aktiv</label>
         </input-field>
 
         <input-field type="text">
@@ -28,6 +16,11 @@
             <label>Script ID</label>
             <label lang="de-DE">Script ID</label>
         </input-field>
+    </card>
+
+    <card>
+        <title>API-Connection / search features</title>
+        <title lang="de-DE">API-Verbindung / Suchfunktionen</title>
 
         <input-field type="text">
             <name>serviceUrl</name>
@@ -45,6 +38,18 @@
             <name>tenantChannel</name>
             <label>Tenant channel</label>
             <label lang="de-DE">Mandanten Channel</label>
+        </input-field>
+
+        <input-field type="bool">
+            <name>smartQueryState</name>
+            <label>SmartQuery</label>
+            <label lang="de-DE">SmartQuery?</label>
+        </input-field>
+
+        <input-field type="bool">
+            <name>smartSuggestState</name>
+            <label>SmartSuggest</label>
+            <label lang="de-DE">SmartSuggest?</label>
         </input-field>
     </card>
 </config>

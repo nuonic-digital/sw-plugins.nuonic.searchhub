@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace NuonicSearchHubIntegration\Client;
 
+use NuonicSearchHubIntegration\Config\ConfigValue;
 use NuonicSearchHubIntegration\Config\PluginConfigService;
+use NuonicSearchHubIntegration\Exception\InvalidConfigurationException;
 use Psr\Log\LoggerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -17,15 +19,21 @@ readonly class ClientFactory
     ) {
     }
 
-    public function make(): SearchHubClient
+    public function make(string $salesChannelId): SearchHubClient
     {
+        $serviceUrl = trim($this->config->getString(ConfigValue::SERVICE_URL, $salesChannelId));
+
+        if ('' === $serviceUrl) {
+            throw new InvalidConfigurationException('Required config serviceUrl is missing');
+        }
+
         return new SearchHubClient(
             $this->httpClient,
             $this->logger,
             new ClientConfiguration(
-                $this->config->getString('serviceUrl'),
-                $this->config->get('tenantName') ?? 'test',
-                $this->config->get('tenantChannel') ?? 'working'
+                $serviceUrl,
+                $this->config->get(ConfigValue::TENANT_NAME, $salesChannelId) ?? 'test',
+                $this->config->get(ConfigValue::TENANT_CHANNEL, $salesChannelId) ?? 'working'
             )
         );
     }
