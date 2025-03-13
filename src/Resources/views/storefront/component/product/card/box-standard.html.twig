@@ -14,7 +14,16 @@
                 {% set variation = product.variation %}
                 {% set displayParent = product.variantListingConfig.displayParent and product.parentId === null %}
 
-                <div class="card product-box box-{{ layout }}" data-product-information="{{ {id, name}|json_encode }}"{% if isSearchHubCrossSelling % }data-track-id="associatedProduct"{% else %} data-track-id="product"{% endif %} data-product-id="{{ searchHubId }}">
+                <div
+                    class="card product-box box-{{ layout }}"
+                    data-product-information="{{ {id, name}|json_encode }}"
+                    {% if isSearchHubCrossSelling %}
+                        data-track-id="associatedProduct"
+                    {% else %}
+                        data-track-id="product"
+                    {% endif %}
+                    data-product-id="{{ searchHubId }}"
+                >
                     {% block component_product_box_content %}
                         {{ parent() }}
                     {% endblock %}
