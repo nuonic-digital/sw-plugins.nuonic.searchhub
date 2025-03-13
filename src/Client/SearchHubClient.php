@@ -6,6 +6,7 @@ namespace NuonicSearchHubIntegration\Client;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -55,19 +56,23 @@ readonly class SearchHubClient
      */
     public function smartSuggest(string $userQuery): array
     {
+        $query = [
+            'userQuery' => $userQuery,
+        ];
+
+        if (!is_null($this->configuration->smartSuggestLimit)) {
+            $query['limit'] = $this->configuration->smartSuggestLimit;
+        }
+
         try {
             $response = $this->httpClient->request('GET', sprintf(
                 '/smartsuggest/v2/%s/%s',
                 $this->configuration->tenantName,
                 $this->configuration->tenantChannel
-            ), [
-                'query' => [
-                    'userQuery' => $userQuery,
-                ],
-            ]);
+            ), ['query' => $query]);
 
             return $response->toArray();
-        } catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+        } catch (TransportExceptionInterface|DecodingExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
             $this->logger->error($e);
 
             return [];

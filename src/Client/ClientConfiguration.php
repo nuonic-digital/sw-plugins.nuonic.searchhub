@@ -10,6 +10,7 @@ class ClientConfiguration
         public string $baseUrl,
         public string $tenantName,
         public string $tenantChannel,
+        public ?int $smartSuggestLimit = null,
     ) {
     }
 }

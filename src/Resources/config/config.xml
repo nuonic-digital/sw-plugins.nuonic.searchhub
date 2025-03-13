@@ -51,5 +51,11 @@
             <label>SmartSuggest</label>
             <label lang="de-DE">SmartSuggest?</label>
         </input-field>
+
+        <input-field type="int">
+            <name>smartSuggestLimit</name>
+            <label>Max amount of suggestions</label>
+            <label lang="de-DE">Maximale Anzahl von Vorschlägen</label>
+        </input-field>
     </card>
 </config>

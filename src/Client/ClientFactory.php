@@ -27,13 +27,26 @@ readonly class ClientFactory
             throw new InvalidConfigurationException('Required config serviceUrl is missing');
         }
 
+        if ($this->config->getBool(ConfigValue::SMART_SUGGEST_STATE, $salesChannelId)) {
+            $smartSuggestLimit = $this->config->getInt(ConfigValue::SMART_SUGGEST_LIMIT, $salesChannelId);
+
+            if (empty($smartSuggestLimit)) {
+                $smartSuggestLimit = null;
+            }
+
+            if ($smartSuggestLimit < 0) {
+                $smartSuggestLimit = null;
+            }
+        }
+
         return new SearchHubClient(
             $this->httpClient,
             $this->logger,
             new ClientConfiguration(
                 $serviceUrl,
                 $this->config->get(ConfigValue::TENANT_NAME, $salesChannelId) ?? 'test',
-                $this->config->get(ConfigValue::TENANT_CHANNEL, $salesChannelId) ?? 'working'
+                $this->config->get(ConfigValue::TENANT_CHANNEL, $salesChannelId) ?? 'working',
+                $smartSuggestLimit ?? null,
             )
         );
     }
