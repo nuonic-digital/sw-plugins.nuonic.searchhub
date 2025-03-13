@@ -10,7 +10,6 @@ use NuonicSearchHubIntegration\Config\PluginConfigService;
 use NuonicSearchHubIntegration\Extension\SearchHubPageExtension;
 use NuonicSearchHubIntegration\Extension\SearchTermSuggestionsExtension;
 use Shopware\Storefront\Page\GenericPageLoadedEvent;
-use Shopware\Storefront\Page\Search\SearchPageLoadedEvent;
 use Shopware\Storefront\Page\Suggest\SuggestPageLoadedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
