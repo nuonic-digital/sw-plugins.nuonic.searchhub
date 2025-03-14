@@ -37,33 +37,49 @@
     {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchTermSuggestionsExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
-        <div class="searchhub__result-headline is__suggest-headline">
-            {{ 'nuonicSearchHubIntegration.frontend.searchSuggest.suggestHeadline'|trans }}
-        </div>
+        {% block layout_searchhub_suggest_results %}
+            {% block layout_searchhub_suggest_results_container %}
+                {% block layout_searchhub_suggest_results_suggest_headline %}
+                    <div class="searchhub__result-headline is__suggest-headline">
+                        {{ 'nuonicSearchHubIntegration.frontend.searchSuggest.suggestHeadline'|trans }}
+                    </div>
+                {% endblock %}
 
-        <div class="searchhub__suggest-container">
-            {% for result in page.getExtension(extensionName).suggestions %}
-                <li class="search-suggest-product js-result">
-                    <a href="{{ url('frontend.search.page', {search: result}) }}"
-                       title="{{ result }}"
-                       class="search-suggest-product-link">
-                        <div class="row align-items-center g-0">
-                            <div class="col search-suggest-product-name">
-                                {{ result }}
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            {% endfor %}
-        </div>
+                {% block layout_searchhub_suggest_results_suggest_results %}
+                    <div class="searchhub__suggest-container">
+                        {% for result in page.getExtension(extensionName).suggestions %}
+                            {% block layout_searchhub_suggest_results_suggest_list %}
+                                <li class="search-suggest-product js-result">
+                                    <a href="{{ url('frontend.search.page', {search: result}) }}"
+                                       title="{{ result }}"
+                                       class="search-suggest-product-link">
+                                        <div class="row align-items-center g-0">
+                                            <div class="col search-suggest-product-name">
+                                                {{ result }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% endblock %}
+                        {% endfor %}
+                    </div>
+                {% endblock %}
+            {% endblock %}
 
-        <div class="searchhub__result-headline is__product-headline">
-            {{ 'nuonicSearchHubIntegration.frontend.searchSuggest.suggestProductHeadline'|trans }}
-        </div>
+            {% block layout_searchhub_suggest_results_product_container %}
+                {% block layout_searchhub_suggest_results_product_headline %}
+                    <div class="searchhub__result-headline is__product-headline">
+                        {{ 'nuonicSearchHubIntegration.frontend.searchSuggest.suggestProductHeadline'|trans }}
+                    </div>
+                {% endblock %}
 
-        <div class="searchhub__product-container">
-            {{ parent() }}
-        </div>
+                {% block layout_searchhub_suggest_results_products %}
+                    <div class="searchhub__product-container">
+                        {{ parent() }}
+                    </div>
+                {% endblock %}
+            {% endblock %}
+        {% endblock %}
     {% else %}
         {{ parent() }}
     {% endif %}
