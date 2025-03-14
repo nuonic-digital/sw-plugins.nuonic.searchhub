@@ -1,5 +1,10 @@
 {
   "nuonicSearchHubIntegration": {
-    "defaultLineItemLabel": "Zahlungsart-Aufschlag"
+    "frontend": {
+      "searchSuggest": {
+        "suggestHeadline": "Suchvorschläge",
+        "suggestProductHeadline": "Produkte"
+      }
+    }
   }
 }

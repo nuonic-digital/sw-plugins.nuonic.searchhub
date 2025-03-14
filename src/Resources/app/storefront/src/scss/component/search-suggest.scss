@@ -1,0 +1,27 @@
+.search-suggest-container {
+    .searchhub__result-headline {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 12px;
+
+        &.is__product-headline {
+            margin-top: 16px;
+        }
+    }
+
+    .searchhub__product-container,
+    .searchhub__suggest-container {
+        border-bottom: 1px solid;
+        padding-bottom: 12px;
+
+        .search-suggest-product {
+            border-bottom: none;
+
+            .search-suggest-product-link { padding: 5px 0; }
+        }
+    }
+
+    .searchhub__product-container {
+        .search-suggest-product-image-container { margin-left: 0; }
+    }
+}
