@@ -45,4 +45,3 @@ class RedirectingSearchController extends StorefrontController
         return $this->searchController->search($context, $request);
     }
 }
-

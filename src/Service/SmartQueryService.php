@@ -12,22 +12,20 @@ use NuonicSearchHubIntegration\Client\SearchHubClient;
  */
 class SmartQueryService
 {
-    /** @var array<string, SmartQueryResult>  */
+    /** @var array<string, SmartQueryResult> */
     private array $queryCache = [];
 
     public function __construct(
-        private readonly ClientFactory $clientFactory
+        private readonly ClientFactory $clientFactory,
     ) {
     }
 
     /**
-     * @param string $userQuery
-     * @param string|null $salesChannelId
      * @return SmartQueryResult|null
      */
     public function query(string $userQuery, ?string $salesChannelId): ?array
     {
-        $key = $salesChannelId . ':' . $userQuery;
+        $key = $salesChannelId.':'.$userQuery;
         if (!isset($this->queryCache[$key])) {
             $this->queryCache[$key] = $this->clientFactory->make(
                 $salesChannelId

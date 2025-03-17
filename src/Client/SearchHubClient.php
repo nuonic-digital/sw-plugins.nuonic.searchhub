@@ -43,7 +43,6 @@ readonly class SearchHubClient
     }
 
     /**
-     * @param string $userQuery
      * @return SmartQueryResult|null
      */
     public function smartQuery(string $userQuery): ?array

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace NuonicSearchHubIntegration\Content\Product\SalesChannel\Search;
 
-use NuonicSearchHubIntegration\Client\ClientFactory;
 use NuonicSearchHubIntegration\Config\ConfigValue;
 use NuonicSearchHubIntegration\Config\PluginConfigService;
 use NuonicSearchHubIntegration\Extension\SearchHubSmartQueryProductSearchRouteExtension;
@@ -54,7 +53,7 @@ class SearchHubSmartQueryRoute extends AbstractProductSearchRoute
 
         $smartQueryResult = $this->smartQueryService->query($userSearch, $context->getSalesChannelId());
 
-        $request->query->set(self::QUERY_KEY, $smartQueryResult['searchQuery'] ?? $userSearch,);
+        $request->query->set(self::QUERY_KEY, $smartQueryResult['searchQuery'] ?? $userSearch);
 
         $result = $this->decorated->load($request, $context, $criteria);
 
@@ -65,7 +64,7 @@ class SearchHubSmartQueryRoute extends AbstractProductSearchRoute
         if (is_array($smartQueryResult) && $smartQueryResult['masterQuery'] !== $userSearch && !str_starts_with($userSearch, '"')) {
             $result->getListingResult()->addExtension(
                 SearchHubSmartQueryProductSearchRouteExtension::EXTENSION_NAME,
-                (new SearchHubSmartQueryProductSearchRouteExtension)->assign($smartQueryResult)
+                (new SearchHubSmartQueryProductSearchRouteExtension())->assign($smartQueryResult)
             );
         }
 
