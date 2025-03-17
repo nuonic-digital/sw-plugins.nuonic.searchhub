@@ -4,6 +4,12 @@
     "smartquery": {
       "replacement": "Results for %masterQuery% are shown.",
       "original": "Search instead for %userQuery%."
+    },
+    "frontend": {
+      "searchSuggest": {
+        "suggestHeadline": "Search suggestions",
+        "suggestProductHeadline": "Products"
+      }
     }
   }
 }
