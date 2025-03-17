@@ -37,6 +37,8 @@
     {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchTermSuggestionsExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
+        {% set parentContent = parent() %}
+
         {% block layout_searchhub_suggest_results %}
             {% block layout_searchhub_suggest_results_container %}
                 {% block layout_searchhub_suggest_results_suggest_headline %}
@@ -75,7 +77,7 @@
 
                 {% block layout_searchhub_suggest_results_products %}
                     <div class="searchhub__product-container">
-                        {{ parent() }}
+                        {{ parentContent|raw }}
                     </div>
                 {% endblock %}
             {% endblock %}
