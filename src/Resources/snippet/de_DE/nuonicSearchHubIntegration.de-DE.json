@@ -1,15 +1,15 @@
 {
   "nuonicSearchHubIntegration": {
+    "defaultLineItemLabel": "Zahlungsart-Aufschlag",
+    "smartquery": {
+      "replacement": "Ergebnisse für %masterQuery% werden angezeigt.",
+      "original": "Stattdessen nach %userQuery% suchen."
+    },
     "frontend": {
       "searchSuggest": {
         "suggestHeadline": "Suchvorschläge",
         "suggestProductHeadline": "Produkte"
       }
-    },
-    "defaultLineItemLabel": "Zahlungsart-Aufschlag",
-    "smartquery": {
-      "replacement": "Ergebnisse für %masterQuery% werden angezeigt.",
-      "original": "Stattdessen nach %userQuery% suchen."
     }
   }
 }
