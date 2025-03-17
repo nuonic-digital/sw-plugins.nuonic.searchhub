@@ -1,5 +1,9 @@
 {
   "nuonicSearchHubIntegration": {
-    "defaultLineItemLabel": "Payment method surcharge"
+    "defaultLineItemLabel": "Payment method surcharge",
+    "smartquery": {
+      "replacement": "Results for %masterQuery% are shown.",
+      "original": "Search instead for %userQuery%."
+    }
   }
 }

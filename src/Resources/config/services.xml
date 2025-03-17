@@ -21,7 +21,7 @@
                  public="true"
         >
             <argument type="service" id="NuonicSearchHubIntegration\Content\Product\SalesChannel\Search\SearchHubSmartQueryRoute.inner"/>
-            <argument type="service" id="NuonicSearchHubIntegration\Client\ClientFactory" />
+            <argument type="service" id="NuonicSearchHubIntegration\Service\SmartQueryService" />
             <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
         </service>
 
@@ -29,6 +29,20 @@
             <argument type="service" id="http_client" />
             <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
             <argument type="service" id="monolog.logger.nuonic_searchhub_integration" />
+        </service>
+
+        <service id="NuonicSearchHubIntegration\Service\SmartQueryService">
+            <argument type="service" id="NuonicSearchHubIntegration\Client\ClientFactory" />
+        </service>
+
+        <service id="NuonicSearchHubIntegration\Controller\RedirectingSearchController">
+            <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
+            <argument type="service" id="Shopware\Storefront\Controller\SearchController" />
+            <argument type="service" id="NuonicSearchHubIntegration\Service\SmartQueryService" />
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="controller.service_arguments" />
         </service>
     </services>
 </container>

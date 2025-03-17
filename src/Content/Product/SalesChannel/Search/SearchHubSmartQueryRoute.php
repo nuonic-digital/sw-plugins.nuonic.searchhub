@@ -7,6 +7,8 @@ namespace NuonicSearchHubIntegration\Content\Product\SalesChannel\Search;
 use NuonicSearchHubIntegration\Client\ClientFactory;
 use NuonicSearchHubIntegration\Config\ConfigValue;
 use NuonicSearchHubIntegration\Config\PluginConfigService;
+use NuonicSearchHubIntegration\Extension\SearchHubSmartQueryProductSearchRouteExtension;
+use NuonicSearchHubIntegration\Service\SmartQueryService;
 use Shopware\Core\Content\Product\SalesChannel\Search\AbstractProductSearchRoute;
 use Shopware\Core\Content\Product\SalesChannel\Search\ProductSearchRouteResponse;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -21,7 +23,7 @@ class SearchHubSmartQueryRoute extends AbstractProductSearchRoute
 
     public function __construct(
         private readonly AbstractProductSearchRoute $decorated,
-        private readonly ClientFactory $clientFactory,
+        private readonly SmartQueryService $smartQueryService,
         private readonly PluginConfigService $config,
     ) {
     }
@@ -50,16 +52,22 @@ class SearchHubSmartQueryRoute extends AbstractProductSearchRoute
 
         $userSearch = $request->get(self::QUERY_KEY);
 
-        $request->query->set(
-            self::QUERY_KEY,
-            $this->clientFactory->make(
-                $context->getSalesChannelId()
-            )->smartQuery($userSearch),
-        );
+        $smartQueryResult = $this->smartQueryService->query($userSearch, $context->getSalesChannelId());
+
+        $request->query->set(self::QUERY_KEY, $smartQueryResult['searchQuery'] ?? $userSearch,);
 
         $result = $this->decorated->load($request, $context, $criteria);
 
-        $request->query->set(self::QUERY_KEY, $userSearch);
+        if (str_starts_with($userSearch, '"') && str_ends_with($userSearch, '"')) {
+            $request->query->set(self::QUERY_KEY, substr($userSearch, 1, -1));
+        }
+
+        if (is_array($smartQueryResult) && $smartQueryResult['masterQuery'] !== $userSearch && !str_starts_with($userSearch, '"')) {
+            $result->getListingResult()->addExtension(
+                SearchHubSmartQueryProductSearchRouteExtension::EXTENSION_NAME,
+                (new SearchHubSmartQueryProductSearchRouteExtension)->assign($smartQueryResult)
+            );
+        }
 
         return $result;
     }

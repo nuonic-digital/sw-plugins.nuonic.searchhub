@@ -2,31 +2,45 @@
 
 {# shopware-block: efee6956345c7e97f9fac074948e6560be8d5c0ad24b89f098086e73490c7810@v6.6.9.0 #}
 {% block page_search_headline %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set trackingExtensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set addTrackingAttrs = page.hasExtension(trackingExtensionName) %}
+    {% set smartQueryExtensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubSmartQueryProductSearchRouteExtension::EXTENSION_NAME') %}
 
-    {% if page.hasExtension(extensionName) %}
-        {% block page_searchhub_headline %}
-            {% if page.listing.total > 0 %}
-                <h1 class="search-headline text-center mb-4" data-track-id="resultCountContainer">
-                    {% block page_search_headline_text %}
-                        {{ 'search.headline'|trans({
-                            '%count%': page.listing.total,
-                            '%searchTerm%': page.searchTerm,
+    {% block page_searchhub_headline %}
+        {% if page.listing.hasExtension(smartQueryExtensionName) and page.listing.getExtension(smartQueryExtensionName).masterQuery is not null %}
+            {% block page_searchhub_replacement_text %}
+                {% set smartQueryExtension = page.listing.getExtension(smartQueryExtensionName) %}
+                <span class="searchhub-smartquery-replacement_text text-center">
+                    {{ 'nuonicSearchHubIntegration.smartquery.replacement'|trans({
+                        '%masterQuery%': smartQueryExtension.masterQuery,
+                    }) }}
+                    <a href="{{ url('frontend.search.page', {
+                        'search': '"' ~ smartQueryExtension.userQuery ~ '"',
+                    }) }}">
+                        {{ 'nuonicSearchHubIntegration.smartquery.original'|trans({
+                            '%userQuery%': smartQueryExtension.userQuery,
                         }) }}
-                    {% endblock %}
-                </h1>
-            {% else %}
-                <h1 class="search-headline text-center mb-4" data-track-id="zeroResultsContainer">
-                    {% block page_search_headline_zero_results_text %}
-                        {{ 'search.headline'|trans({
-                            '%count%': page.listing.total,
-                            '%searchTerm%': page.searchTerm,
-                        }) }}
-                    {% endblock %}
-                </h1>
-            {% endif %}
-        {% endblock %}
-    {% else %}
-        {{ parent() }}
-    {% endif %}
+                    </a>
+                </span>
+            {% endblock %}
+        {% endif %}
+        <h1
+                class="search-headline text-center mb-4"
+                {% if addTrackingAttrs %}
+                    {% if page.listing.total > 0 %}
+                        data-track-id="resultCountContainer"
+                    {% else %}
+                        data-track-id="zeroResultsContainer"
+                    {% endif %}
+                {% endif %}
+        >
+            {# shopware-block: 20a0df36354efbe707e583337a9c7bb5c9498e180f3fe361b3391dc80aca63a5@v6.6.10.2 #}
+            {% block page_search_headline_text %}
+                {{ 'search.headline'|trans({
+                    '%count%': page.listing.total,
+                    '%searchTerm%': page.searchTerm,
+                }) }}
+            {% endblock %}
+        </h1>
+    {% endblock %}
 {% endblock %}

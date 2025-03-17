@@ -12,6 +12,18 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
+/**
+ * @phpstan-type SmartQueryResult array{
+ *     userQuery: string,
+ *     masterQuery: ?string,
+ *     searchQuery: string,
+ *     successful: bool,
+ *     redirect: ?string,
+ *     potentialCorrections: ?array,
+ *     relatedQueries: ?array,
+ *     resultModifications: ?array
+ * }
+ */
 readonly class SearchHubClient
 {
     private HttpClientInterface $httpClient;
@@ -30,11 +42,15 @@ readonly class SearchHubClient
         ]);
     }
 
-    public function smartQuery(string $userQuery): string
+    /**
+     * @param string $userQuery
+     * @return SmartQueryResult|null
+     */
+    public function smartQuery(string $userQuery): ?array
     {
         try {
             $response = $this->httpClient->request('GET', sprintf(
-                '/smartquery/v1/%s/%s',
+                '/smartquery/v2/%s/%s',
                 $this->configuration->tenantName,
                 $this->configuration->tenantChannel
             ), [
@@ -43,11 +59,11 @@ readonly class SearchHubClient
                 ],
             ]);
 
-            return $response->getContent();
-        } catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            return $response->toArray();
+        } catch (TransportExceptionInterface|DecodingExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
             $this->logger->error($e);
 
-            return $userQuery;
+            return null;
         }
     }
 
