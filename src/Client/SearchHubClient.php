@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NuonicSearchHubIntegration\Client;
+namespace NuonicSearchHub\Client;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
@@ -37,7 +37,7 @@ readonly class SearchHubClient
             'base_uri' => $configuration->baseUrl,
             'timeout' => 1,
             'headers' => [
-                'User-Agent' => 'NuonicSearchHubIntegration/Shopware6 1.0',
+                'User-Agent' => 'NuonicSearchHub/Shopware6 1.0',
             ],
         ]);
     }

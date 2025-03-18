@@ -4,7 +4,7 @@
 {% block layout_head_javascript_jquery %}
     {{ parent() }}
 
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block layout_head_searchhub_script %}

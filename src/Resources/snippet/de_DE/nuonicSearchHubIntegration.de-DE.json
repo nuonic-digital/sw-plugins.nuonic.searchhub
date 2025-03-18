@@ -1,5 +1,5 @@
 {
-  "nuonicSearchHubIntegration": {
+  "NuonicSearchHub": {
     "defaultLineItemLabel": "Zahlungsart-Aufschlag",
     "smartquery": {
       "replacement": "Ergebnisse für %masterQuery% werden angezeigt.",

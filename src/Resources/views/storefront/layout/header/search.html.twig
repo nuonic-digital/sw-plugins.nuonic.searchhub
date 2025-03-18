@@ -2,7 +2,7 @@
 
 {# shopware-block: 774b616ac8ff8c8770c4b0d13409fee12ba55226bd5fcbdd61c07e0d297d0cc0@v6.6.9.0 #}
 {% block layout_header_search_input %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block layout_header_searchhub_input %}
@@ -24,7 +24,7 @@
 
 {# shopware-block: fb98468b2b37df27bfdf674df9bb3e591961247b38f8030fe699b6bd26b9e1e3@v6.6.9.0 #}
 {% block layout_header_search_button %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block layout_header_searchhub_button %}

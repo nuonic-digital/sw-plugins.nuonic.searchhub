@@ -2,7 +2,7 @@
 
 {# shopware-block: 2c2fd40c2dcdaa928110bd8a1b5ef4f0d0a77222cbc86272851c8a2ad7358108@v6.6.9.0 #}
 {% block component_product_box %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block component_product_searchhub_box %}
@@ -24,6 +24,7 @@
                     {% endif %}
                     data-product-id="{{ searchHubId }}"
                 >
+                    {# shopware-block: 4f193a6366b460416a67c0a6b394e15e58b281cc7bcb8f172c7215bfbafe4eb1@v6.6.10.2 #}
                     {% block component_product_box_content %}
                         {{ parent() }}
                     {% endblock %}

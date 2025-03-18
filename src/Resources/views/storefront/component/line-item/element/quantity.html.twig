@@ -2,11 +2,12 @@
 
 {# shopware-block: 5cc710f9f9c25b4c5d3cf9c7970f445bf0897cab027dab14771d37cad10d2b78@v6.6.9.0 #}
 {% block component_line_item_quantity_select %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block component_line_item_quantity_searchhub_select %}
             <fieldset data-track-id="checkoutQuantity">
+                {# shopware-block: f4e7887139f44d43f179227fcf5c3d9b3655a0ca6c3a7e7ee11f48081fb34c4d@v6.6.10.2 #}
                 {% block component_line_item_quantity_select_input %}
                     {{ parent() }}
                 {% endblock %}

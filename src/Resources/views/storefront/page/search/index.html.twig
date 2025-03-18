@@ -2,22 +2,22 @@
 
 {# shopware-block: efee6956345c7e97f9fac074948e6560be8d5c0ad24b89f098086e73490c7810@v6.6.9.0 #}
 {% block page_search_headline %}
-    {% set trackingExtensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set trackingExtensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
     {% set addTrackingAttrs = page.hasExtension(trackingExtensionName) %}
-    {% set smartQueryExtensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubSmartQueryProductSearchRouteExtension::EXTENSION_NAME') %}
+    {% set smartQueryExtensionName = constant('NuonicSearchHub\\Extension\\SearchHubSmartQueryProductSearchRouteExtension::EXTENSION_NAME') %}
 
     {% block page_searchhub_headline %}
         {% if page.listing.hasExtension(smartQueryExtensionName) and page.listing.getExtension(smartQueryExtensionName).masterQuery is not null %}
             {% block page_searchhub_replacement_text %}
                 {% set smartQueryExtension = page.listing.getExtension(smartQueryExtensionName) %}
                 <span class="searchhub-smartquery-replacement_text text-center">
-                    {{ 'nuonicSearchHubIntegration.smartquery.replacement'|trans({
+                    {{ 'NuonicSearchHub.smartquery.replacement'|trans({
                         '%masterQuery%': smartQueryExtension.masterQuery,
                     }) }}
                     <a href="{{ url('frontend.search.page', {
                         'search': '"' ~ smartQueryExtension.userQuery ~ '"',
                     }) }}">
-                        {{ 'nuonicSearchHubIntegration.smartquery.original'|trans({
+                        {{ 'NuonicSearchHub.smartquery.original'|trans({
                             '%userQuery%': smartQueryExtension.userQuery,
                         }) }}
                     </a>

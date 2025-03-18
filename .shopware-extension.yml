@@ -1,3 +1,62 @@
+filename: .shopware-extension.yml
+store:
+    availabilities:
+        - International
+    default_locale: en_GB
+    localizations: []
+    categories: []
+    type: extension
+    icon: src/Resources/store/icon.png
+    automatic_bugfix_version_compatibility: false
+    description:
+        de: file:src/Resources/store/description.de.html
+        en: file:src/Resources/store/description.en.html
+    installation_manual:
+        de: file:src/Resources/store/installation_manual.de.html
+        en: file:src/Resources/store/installation_manual.en.html
+    tags:
+        de: []
+        en: []
+    videos:
+        de: []
+        en: []
+    highlights:
+        de:
+            - KI-gestütztes Add-on zur Suchoptimierung
+            - Kompatibel mit jeder Suchtechnologie
+            - Automatisierte Erkennung von relevanten Landing-Pages
+            - Relevantere & personalisierte Suchergebnisse
+            - Deutliche Reduzierung von Nulltreffern
+        en:
+            - 'AI-powered add-on for search optimization '
+            - 'Compatible with any search technology '
+            - 'Automated detection of relevant landing pages '
+            - 'More relevant & personalized search results '
+            - Significant reduction of zero-result pages
+    features:
+        de:
+            - Schnelle & einfache Integration via Shopware Plugin
+            - Einsatzbereit in wenigen Tagen
+            - Erweiterung bestehender Suche – kein Austausch nötig
+            - Optimierte & präzisere Suchvorschläge
+            - Unbegrenzte Such-Analytics für maximale Transparenz
+            - Automatische Erkennung & Korrektur fehlerhafter Suchanfragen
+            - Unterstützung für Multi-Language & Synonyme
+            - Reduzierung von Nulltreffern für bessere Nutzererfahrung
+            - Steigerung der Conversion durch präzisere Suchergebnisse
+        en:
+            - Fast & easy integration via Shopware plugin
+            - Ready to use in just a few days
+            - Extension of existing search – no replacement necessary
+            - Optimized & more precise search suggestions
+            - Unlimited search analytics for maximum transparency
+            - Automatic detection & correction of faulty search queries
+            - Support for multi-language & synonyms
+            - Reduction of zero-result pages for better user experience
+            - Increase in conversion through more precise search results
+    faq:
+        de: []
+        en: []
 build:
     zip:
         composer:

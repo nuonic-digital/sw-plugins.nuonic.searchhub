@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace NuonicSearchHubIntegration\Client;
+namespace NuonicSearchHub\Client;
 
-use NuonicSearchHubIntegration\Config\ConfigValue;
-use NuonicSearchHubIntegration\Config\PluginConfigService;
-use NuonicSearchHubIntegration\Exception\InvalidConfigurationException;
+use NuonicSearchHub\Config\ConfigValue;
+use NuonicSearchHub\Config\PluginConfigService;
+use NuonicSearchHub\Exception\InvalidConfigurationException;
 use Psr\Log\LoggerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 

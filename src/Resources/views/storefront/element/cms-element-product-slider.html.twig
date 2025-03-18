@@ -2,7 +2,7 @@
 
  {# shopware-block: 4d51b7dadd286250e89c1d4e63ec37a3f740e0b24cfa9edd7d215f2fb1be317e@v6.6.9.0 #}
 {% block element_product_slider_element %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
          {% block element_product_slider_searchhub_element %}
@@ -10,6 +10,7 @@
                   data-product-slider-container="true">
 
                  {% for product in element.data.products.elements %}
+                     {# shopware-block: 834eccb52f0b9b18a210c0e857db04cc19701602b2be1166a3c90636b99d5400@v6.6.10.2 #}
                      {% block element_product_slider_inner_item %}
                          <div class="product-slider-item">
                              {% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {

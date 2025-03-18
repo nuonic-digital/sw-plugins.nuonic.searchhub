@@ -2,7 +2,7 @@
 
 {# shopware-block: 7db24a65023dbdc2fea83b89fb5e49473d2fdefa6fe7238b8041e7cf9790bfbd@v6.6.9.0 #}
 {% block component_line_item_type_product %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block component_line_item_type_searchhub_product %}
@@ -12,6 +12,7 @@
             {%- else -%}
                 <div class="{{ lineItemClasses }}" role="listitem" data-track-id="checkoutProduct">
             {%- endif -%}
+            {# shopware-block: 1041a39b8c3ae41edd9b9971f0c9eae8b4dc87f6a1a087aac417ba187d7d9af0@v6.6.10.2 #}
             {% block component_line_item_type_product_inner %}
                 {{ parent() }}
             {% endblock %}
@@ -29,7 +30,7 @@
 
 {# shopware-block: 97ba73ca6f8ab60d634d6d1dd3a8333b57ca523cc75b33fee044aeb068aabe2c@v6.6.9.0 #}
 {% block component_line_item_type_product_number %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block component_line_item_type_searchhub_product_number %}

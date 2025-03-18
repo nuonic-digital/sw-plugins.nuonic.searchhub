@@ -2,7 +2,7 @@
 
 {# shopware-block: e94d70d2152c2864e20bbb149efb03007581dec61480e13739fa2bd9ed2a70bd@v6.6.9.0 #}
 {% block component_product_box_price %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block component_product_box_searchhub_price %}

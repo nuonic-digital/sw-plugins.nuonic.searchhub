@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NuonicSearchHubIntegration\Config;
+namespace NuonicSearchHub\Config;
 
 use Shopware\Core\System\SystemConfig\Exception\InvalidSettingValueException;
 use Shopware\Core\System\SystemConfig\SystemConfigService;

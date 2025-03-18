@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NuonicSearchHubIntegration\Client;
+namespace NuonicSearchHub\Client;
 
 class ClientConfiguration
 {

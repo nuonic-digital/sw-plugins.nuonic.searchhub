@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace NuonicSearchHubIntegration\Subscriber;
+namespace NuonicSearchHub\Subscriber;
 
-use NuonicSearchHubIntegration\Client\ClientFactory;
-use NuonicSearchHubIntegration\Config\ConfigValue;
-use NuonicSearchHubIntegration\Config\PluginConfigService;
-use NuonicSearchHubIntegration\Extension\SearchHubPageExtension;
-use NuonicSearchHubIntegration\Extension\SearchTermSuggestionsExtension;
+use NuonicSearchHub\Client\ClientFactory;
+use NuonicSearchHub\Config\ConfigValue;
+use NuonicSearchHub\Config\PluginConfigService;
+use NuonicSearchHub\Extension\SearchHubPageExtension;
+use NuonicSearchHub\Extension\SearchTermSuggestionsExtension;
 use Shopware\Storefront\Page\GenericPageLoadedEvent;
 use Shopware\Storefront\Page\Suggest\SuggestPageLoadedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

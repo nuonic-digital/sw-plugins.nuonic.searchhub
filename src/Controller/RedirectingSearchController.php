@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace NuonicSearchHubIntegration\Controller;
+namespace NuonicSearchHub\Controller;
 
-use NuonicSearchHubIntegration\Client\ClientFactory;
-use NuonicSearchHubIntegration\Config\ConfigValue;
-use NuonicSearchHubIntegration\Config\PluginConfigService;
+use NuonicSearchHub\Client\ClientFactory;
+use NuonicSearchHub\Config\ConfigValue;
+use NuonicSearchHub\Config\PluginConfigService;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\SearchController;
 use Shopware\Storefront\Controller\StorefrontController;

@@ -2,7 +2,7 @@
 
 {# shopware-block: 9eb153cb569ac41e0e7096f9ea59df49957e7ba97bfc3adf1765b81db872db03@v6.6.9.0 #}
 {% block page_product_detail_product_buy_button %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block page_product_detail_product_searchhub_buy_button %}
@@ -12,6 +12,7 @@
                 <span itemprop="searchhub-quantity" data-track-id="addToBasketQuantity" class="d-none">1</span>
                 <button class="btn btn-buy"
                         title="{{ 'listing.boxAddProduct'|trans|striptags }}">
+                    {# shopware-block: ecda98970e2bbf74c3041cfe4a116a8bc81aa9334a278fb5d40b2b9e6a668714@v6.6.10.2 #}
                     {% block page_product_detail_product_buy_button_label %}
                         {{ 'listing.boxAddProduct'|trans|sw_sanitize }}
                     {% endblock %}

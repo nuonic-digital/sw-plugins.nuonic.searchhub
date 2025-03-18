@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NuonicSearchHubIntegration\Extension;
+namespace NuonicSearchHub\Extension;
 
 use Shopware\Core\Framework\Struct\Struct;
 

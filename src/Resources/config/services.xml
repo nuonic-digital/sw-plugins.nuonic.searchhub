@@ -4,38 +4,38 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="NuonicSearchHubIntegration\Config\PluginConfigService">
+        <service id="NuonicSearchHub\Config\PluginConfigService">
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
-            <argument>NuonicSearchHubIntegration.config</argument>
+            <argument>NuonicSearchHub.config</argument>
         </service>
 
-        <service id="NuonicSearchHubIntegration\Subscriber\FrontendSubscriber">
-            <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
-            <argument type="service" id="NuonicSearchHubIntegration\Client\ClientFactory" />
+        <service id="NuonicSearchHub\Subscriber\FrontendSubscriber">
+            <argument type="service" id="NuonicSearchHub\Config\PluginConfigService" />
+            <argument type="service" id="NuonicSearchHub\Client\ClientFactory" />
             <argument type="service" id="request_stack" />
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="NuonicSearchHubIntegration\Content\Product\SalesChannel\Search\SearchHubSmartQueryRoute"
+        <service id="NuonicSearchHub\Content\Product\SalesChannel\Search\SearchHubSmartQueryRoute"
                  decorates="Shopware\Core\Content\Product\SalesChannel\Search\ProductSearchRoute"
                  decoration-priority="0"
                  public="true"
         >
-            <argument type="service" id="NuonicSearchHubIntegration\Content\Product\SalesChannel\Search\SearchHubSmartQueryRoute.inner"/>
-            <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
-            <argument type="service" id="NuonicSearchHubIntegration\Client\ClientFactory" />
+            <argument type="service" id="NuonicSearchHub\Content\Product\SalesChannel\Search\SearchHubSmartQueryRoute.inner"/>
+            <argument type="service" id="NuonicSearchHub\Config\PluginConfigService" />
+            <argument type="service" id="NuonicSearchHub\Client\ClientFactory" />
         </service>
 
-        <service id="NuonicSearchHubIntegration\Client\ClientFactory">
+        <service id="NuonicSearchHub\Client\ClientFactory">
             <argument type="service" id="http_client" />
-            <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
+            <argument type="service" id="NuonicSearchHub\Config\PluginConfigService" />
             <argument type="service" id="monolog.logger.nuonic_searchhub_integration" />
         </service>
 
-        <service id="NuonicSearchHubIntegration\Controller\RedirectingSearchController">
-            <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
+        <service id="NuonicSearchHub\Controller\RedirectingSearchController">
+            <argument type="service" id="NuonicSearchHub\Config\PluginConfigService" />
             <argument type="service" id="Shopware\Storefront\Controller\SearchController" />
-            <argument type="service" id="NuonicSearchHubIntegration\Client\ClientFactory" />
+            <argument type="service" id="NuonicSearchHub\Client\ClientFactory" />
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>

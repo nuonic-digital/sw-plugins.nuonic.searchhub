@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace NuonicSearchHubIntegration\Content\Product\SalesChannel\Search;
+namespace NuonicSearchHub\Content\Product\SalesChannel\Search;
 
-use NuonicSearchHubIntegration\Client\ClientFactory;
-use NuonicSearchHubIntegration\Config\ConfigValue;
-use NuonicSearchHubIntegration\Config\PluginConfigService;
-use NuonicSearchHubIntegration\Controller\RedirectingSearchController;
-use NuonicSearchHubIntegration\Extension\SearchHubSmartQueryProductSearchRouteExtension;
+use NuonicSearchHub\Client\ClientFactory;
+use NuonicSearchHub\Config\ConfigValue;
+use NuonicSearchHub\Config\PluginConfigService;
+use NuonicSearchHub\Controller\RedirectingSearchController;
+use NuonicSearchHub\Extension\SearchHubSmartQueryProductSearchRouteExtension;
 use Shopware\Core\Content\Product\SalesChannel\Search\AbstractProductSearchRoute;
 use Shopware\Core\Content\Product\SalesChannel\Search\ProductSearchRouteResponse;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;

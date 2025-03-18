@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NuonicSearchHubIntegration\Config;
+namespace NuonicSearchHub\Config;
 
 final readonly class ConfigValue
 {

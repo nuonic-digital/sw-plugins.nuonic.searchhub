@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NuonicSearchHubIntegration\Exception;
+namespace NuonicSearchHub\Exception;
 
 class InvalidConfigurationException extends \RuntimeException
 {

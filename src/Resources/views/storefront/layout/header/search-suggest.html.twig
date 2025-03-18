@@ -2,7 +2,7 @@
 
 {# shopware-block: 70dda0417dd9490f05ca7aa075c9d94c0f8ec2ce75f6c25a37efd1a5d662ca73@v6.6.9.0 #}
 {% block layout_search_suggest_result_name %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block layout_searchhub_suggest_result_name %}
@@ -17,7 +17,7 @@
 
 {# shopware-block: b25df5a649667e8eb91da59ddf79c4cd057dbd1912b79ff75ae1bddbfaad595b@v6.6.9.0 #}
 {% block layout_search_suggest_result_total_count %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block layout_searchhub_suggest_result_total_count %}
@@ -34,7 +34,7 @@
 
 {# shopware-block: b9b97663f0aabde799405548fae2e8431b7f7e9d0c26d1ea6524a985217a5118@v6.6.10.1 #}
 {% block layout_search_suggest_results %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchTermSuggestionsExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchTermSuggestionsExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% set parentContent = parent() %}
@@ -43,7 +43,7 @@
             {% block layout_searchhub_suggest_results_container %}
                 {% block layout_searchhub_suggest_results_suggest_headline %}
                     <div class="searchhub__result-headline is__suggest-headline">
-                        {{ 'nuonicSearchHubIntegration.frontend.searchSuggest.suggestHeadline'|trans }}
+                        {{ 'NuonicSearchHub.frontend.searchSuggest.suggestHeadline'|trans }}
                     </div>
                 {% endblock %}
 
@@ -71,7 +71,7 @@
             {% block layout_searchhub_suggest_results_product_container %}
                 {% block layout_searchhub_suggest_results_product_headline %}
                     <div class="searchhub__result-headline is__product-headline">
-                        {{ 'nuonicSearchHubIntegration.frontend.searchSuggest.suggestProductHeadline'|trans }}
+                        {{ 'NuonicSearchHub.frontend.searchSuggest.suggestProductHeadline'|trans }}
                     </div>
                 {% endblock %}
 

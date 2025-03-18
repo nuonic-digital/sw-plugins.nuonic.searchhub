@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NuonicSearchHubIntegration;
+namespace NuonicSearchHub;
 
 use Shopware\Core\Framework\Plugin;
 use Symfony\Component\Config\FileLocator;
@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Loader\DirectoryLoader;
 use Symfony\Component\DependencyInjection\Loader\GlobFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class NuonicSearchHubIntegration extends Plugin
+class NuonicSearchHub extends Plugin
 {
     public function build(ContainerBuilder $container): void
     {

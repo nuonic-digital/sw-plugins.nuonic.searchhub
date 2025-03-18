@@ -2,7 +2,7 @@
     "name": "nuonic/searchhub-integration",
     "description": "SearchHub Integration",
     "type": "shopware-platform-plugin",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "license": "proprietary",
     "authors": [
         {
@@ -13,7 +13,7 @@
     "extra": {
         "copyright": "nuonic Digital GmbH & Co. KG",
         "author": "nuonic Digital GmbH & Co. KG",
-        "shopware-plugin-class": "NuonicSearchHubIntegration\\NuonicSearchHubIntegration",
+        "shopware-plugin-class": "NuonicSearchHub\\NuonicSearchHub",
         "label": {
             "de-DE": "SearchHub Integration",
             "en-GB": "SearchHub Integration"
@@ -41,7 +41,7 @@
     },
     "autoload": {
         "psr-4": {
-            "NuonicSearchHubIntegration\\": "src/"
+            "NuonicSearchHub\\": "src/"
         }
     },
     "scripts": {

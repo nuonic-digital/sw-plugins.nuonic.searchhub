@@ -3,7 +3,7 @@
 
 {# shopware-block: 355b033def4f27ccc21f406efeac86c988fc646db7e9ca513e813fa1c77daac9@v6.6.9.0 #}
 {% block buy_widget_buy_quantity_container %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block buy_widget_buy_quantity_searchhub_container %}
@@ -12,6 +12,7 @@
                     {# @deprecated tag:v6.7.0 - Unused variable selectQuantityThreshold will be removed without replacement #}
                     {% set selectQuantityThreshold = 100 %}
 
+                    {# shopware-block: e5c63baa4779b60c8be913d3a1e01bb2e6e7f17c19a3689434ab2f916a43c990@v6.6.10.2 #}
                     {% block buy_widget_buy_quantity_input_group %}
                         {{ parent() }}
                     {% endblock %}
@@ -25,7 +26,7 @@
 
 {# shopware-block: e953074bce9f76e2c8ebaf348057ca1c0cc0f99a0e42a9065ddb426b94de857e@v6.6.9.0 #}
 {% block buy_widget_buy_button %}
-    {% set extensionName = constant('NuonicSearchHubIntegration\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
+    {% set extensionName = constant('NuonicSearchHub\\Extension\\SearchHubPageExtension::EXTENSION_NAME') %}
 
     {% if page.hasExtension(extensionName) %}
         {% block buy_widget_buy_button_searchhub_container %}
