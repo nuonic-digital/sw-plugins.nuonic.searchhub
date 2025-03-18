@@ -9,7 +9,18 @@
     {% if page.hasExtension(extensionName) %}
         {% block layout_head_searchhub_script %}
             {% set scriptId = page.getExtension(extensionName).scriptId %}
-            <script defer src="https://c.searchhub.io/{{ scriptId }}"></script>
+            <script>
+              function runSearchHubScripts() {
+                let firstScript = document.getElementsByTagName('script')[0]
+
+                let el = document.createElement('script')
+                el.async = true
+                el.defer = true
+                el.src = 'https://c.searchhub.io/{{ scriptId }}'
+
+                firstScript.parentNode.insertBefore(el, firstScript)
+              }
+            </script>
         {% endblock %}
     {% endif %}
 {% endblock %}

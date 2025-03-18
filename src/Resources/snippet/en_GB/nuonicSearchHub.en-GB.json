@@ -10,6 +10,12 @@
         "suggestHeadline": "Search suggestions",
         "suggestProductHeadline": "Products"
       }
+    },
+    "cookie": {
+      "name": "searchHub search analysis",
+      "description": "Our partner searchHub ensures more relevant & personalised search results in our shop.",
+      "groupStatistical": "Statistics",
+      "groupStatisticalDescription": "These cookies are used for statistics and shop performance metrics."
     }
   }
 }
