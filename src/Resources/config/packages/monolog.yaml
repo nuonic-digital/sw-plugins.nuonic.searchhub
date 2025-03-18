@@ -1,9 +1,9 @@
 monolog:
-  channels: ['nuonic_searchhub_integration']
+  channels: ['nuonic_searchhub']
   handlers:
     nuonicSearchHubHandler:
       type: rotating_file
-      path: "%kernel.logs_dir%/nuonic_searchhub_integration_%kernel.environment%.log"
+      path: "%kernel.logs_dir%/nuonic_searchhub_%kernel.environment%.log"
       level: error
-      channels: [ "nuonic_searchhub_integration" ]
+      channels: [ "nuonic_searchhub" ]
 

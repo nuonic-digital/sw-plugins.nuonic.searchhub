@@ -29,7 +29,7 @@
         <service id="NuonicSearchHub\Client\ClientFactory">
             <argument type="service" id="http_client" />
             <argument type="service" id="NuonicSearchHub\Config\PluginConfigService" />
-            <argument type="service" id="monolog.logger.nuonic_searchhub_integration" />
+            <argument type="service" id="monolog.logger.nuonic_searchhub" />
         </service>
 
         <service id="NuonicSearchHub\Controller\RedirectingSearchController">
