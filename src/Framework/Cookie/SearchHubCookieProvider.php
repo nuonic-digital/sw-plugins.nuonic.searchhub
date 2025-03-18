@@ -16,7 +16,7 @@ readonly class SearchHubCookieProvider implements CookieProviderInterface
         'snippet_description' => 'NuonicSearchHub.cookie.description ',
         'cookie' => 'NuonicSearchHub-js',
         'value' => '1',
-        'expiration' => '30'
+        'expiration' => '30',
     ];
 
     private const COOKIE_GROUP = [
@@ -63,7 +63,7 @@ readonly class SearchHubCookieProvider implements CookieProviderInterface
                 'snippet_description' => 'NuonicSearchHub.cookie.description ',
                 'cookie' => 'NuonicSearchHub-js',
                 'value' => '1',
-                'expiration' => '30'
+                'expiration' => '30',
             ];
 
             return $cookies;
@@ -75,6 +75,6 @@ readonly class SearchHubCookieProvider implements CookieProviderInterface
     private function isStatisticalCookieGroup(array $cookie): bool
     {
         return array_key_exists('snippet_name', $cookie)
-            && $cookie['snippet_name'] === 'cookie.groupStatistical';
+            && 'cookie.groupStatistical' === $cookie['snippet_name'];
     }
 }
