@@ -9,7 +9,7 @@
     {% if page.hasExtension(extensionName) %}
         {% block layout_head_searchhub_script %}
             {% set scriptId = page.getExtension(extensionName).scriptId %}
-            <script>
+            <script type="text/javascript">
               function runSearchHubScripts() {
                 let firstScript = document.getElementsByTagName('script')[0]
 
