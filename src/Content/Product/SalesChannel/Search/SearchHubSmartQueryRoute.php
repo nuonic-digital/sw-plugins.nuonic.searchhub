@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace NuonicSearchHubIntegration\Content\Product\SalesChannel\Search;
 
+use NuonicSearchHubIntegration\Client\ClientFactory;
 use NuonicSearchHubIntegration\Config\ConfigValue;
 use NuonicSearchHubIntegration\Config\PluginConfigService;
+use NuonicSearchHubIntegration\Controller\RedirectingSearchController;
 use NuonicSearchHubIntegration\Extension\SearchHubSmartQueryProductSearchRouteExtension;
-use NuonicSearchHubIntegration\Service\SmartQueryService;
 use Shopware\Core\Content\Product\SalesChannel\Search\AbstractProductSearchRoute;
 use Shopware\Core\Content\Product\SalesChannel\Search\ProductSearchRouteResponse;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -22,8 +23,8 @@ class SearchHubSmartQueryRoute extends AbstractProductSearchRoute
 
     public function __construct(
         private readonly AbstractProductSearchRoute $decorated,
-        private readonly SmartQueryService $smartQueryService,
         private readonly PluginConfigService $config,
+        private readonly ClientFactory $clientFactory,
     ) {
     }
 
@@ -51,7 +52,16 @@ class SearchHubSmartQueryRoute extends AbstractProductSearchRoute
 
         $userSearch = $request->get(self::QUERY_KEY);
 
-        $smartQueryResult = $this->smartQueryService->query($userSearch, $context->getSalesChannelId());
+        if (!$request->attributes->has(RedirectingSearchController::SMART_QUERY_RESULT_REQUEST_ATTR)) {
+            // sessionId will evaluate to null when the cookie is not set or the $request is null
+            $sessionId = $request->cookies->has('SearchCollectorSession') ?
+                $request->cookies->get('SearchCollectorSession') : null;
+
+            $smartQueryResult = $this->clientFactory->make($context->getSalesChannelId())
+                ->smartQuery($userSearch, $sessionId);
+        } else {
+            $smartQueryResult = $request->attributes->get(RedirectingSearchController::SMART_QUERY_RESULT_REQUEST_ATTR);
+        }
 
         $request->query->set(self::QUERY_KEY, $smartQueryResult['searchQuery'] ?? $userSearch);
 

@@ -19,9 +19,9 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  *     searchQuery: string,
  *     successful: bool,
  *     redirect: ?string,
- *     potentialCorrections: ?array,
- *     relatedQueries: ?array,
- *     resultModifications: ?array
+ *     potentialCorrections: ?string[],
+ *     relatedQueries: ?string[],
+ *     resultModifications: ?string[]
  * }
  */
 readonly class SearchHubClient
@@ -45,17 +45,23 @@ readonly class SearchHubClient
     /**
      * @return SmartQueryResult|null
      */
-    public function smartQuery(string $userQuery): ?array
+    public function smartQuery(string $userQuery, ?string $sessionId = null): ?array
     {
+        $query = [
+            'userQuery' => $userQuery,
+        ];
+
+        if (!is_null($sessionId)) {
+            $query['sessionId'] = $sessionId;
+        }
+
         try {
             $response = $this->httpClient->request('GET', sprintf(
                 '/smartquery/v2/%s/%s',
                 $this->configuration->tenantName,
                 $this->configuration->tenantChannel
             ), [
-                'query' => [
-                    'userQuery' => $userQuery,
-                ],
+                'query' => $query,
             ]);
 
             return $response->toArray();
@@ -69,11 +75,15 @@ readonly class SearchHubClient
     /**
      * @return string[]
      */
-    public function smartSuggest(string $userQuery): array
+    public function smartSuggest(string $userQuery, ?string $sessionId = null): array
     {
         $query = [
             'userQuery' => $userQuery,
         ];
+
+        if (!is_null($sessionId)) {
+            $query['sessionId'] = $sessionId;
+        }
 
         if (!is_null($this->configuration->smartSuggestLimit)) {
             $query['limit'] = $this->configuration->smartSuggestLimit;

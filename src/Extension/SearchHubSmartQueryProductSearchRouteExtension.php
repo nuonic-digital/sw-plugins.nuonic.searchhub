@@ -15,7 +15,10 @@ class SearchHubSmartQueryProductSearchRouteExtension extends Struct
     public string $searchQuery;
     public bool $successful;
     public ?string $redirect;
+    /** @var string[]|null */
     public ?array $potentialCorrections;
+    /** @var string[]|null */
     public ?array $relatedQueries;
+    /** @var string[]|null */
     public ?array $resultModifications;
 }

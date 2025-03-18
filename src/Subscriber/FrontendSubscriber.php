@@ -12,12 +12,14 @@ use NuonicSearchHubIntegration\Extension\SearchTermSuggestionsExtension;
 use Shopware\Storefront\Page\GenericPageLoadedEvent;
 use Shopware\Storefront\Page\Suggest\SuggestPageLoadedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 readonly class FrontendSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private PluginConfigService $config,
         private ClientFactory $clientFactory,
+        private RequestStack $requestStack,
     ) {
     }
 
@@ -56,8 +58,14 @@ readonly class FrontendSubscriber implements EventSubscriberInterface
             return;
         }
 
+        $request = $this->requestStack->getMainRequest();
+
+        // sessionId will evaluate to null when the cookie is not set or the $request is null
+        $sessionId = $request?->cookies->has('SearchCollectorSession') ?
+            $request->cookies->get('SearchCollectorSession') : null;
+
         $suggestions = $this->clientFactory->make($event->getSalesChannelContext()->getSalesChannelId())
-            ->smartSuggest($event->getPage()->getSearchTerm());
+            ->smartSuggest($event->getPage()->getSearchTerm(), $sessionId);
 
         if (empty($suggestions)) {
             return;

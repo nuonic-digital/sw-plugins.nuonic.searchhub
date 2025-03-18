@@ -12,6 +12,7 @@
         <service id="NuonicSearchHubIntegration\Subscriber\FrontendSubscriber">
             <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
             <argument type="service" id="NuonicSearchHubIntegration\Client\ClientFactory" />
+            <argument type="service" id="request_stack" />
             <tag name="kernel.event_subscriber"/>
         </service>
 
@@ -21,8 +22,8 @@
                  public="true"
         >
             <argument type="service" id="NuonicSearchHubIntegration\Content\Product\SalesChannel\Search\SearchHubSmartQueryRoute.inner"/>
-            <argument type="service" id="NuonicSearchHubIntegration\Service\SmartQueryService" />
             <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
+            <argument type="service" id="NuonicSearchHubIntegration\Client\ClientFactory" />
         </service>
 
         <service id="NuonicSearchHubIntegration\Client\ClientFactory">
@@ -31,14 +32,10 @@
             <argument type="service" id="monolog.logger.nuonic_searchhub_integration" />
         </service>
 
-        <service id="NuonicSearchHubIntegration\Service\SmartQueryService">
-            <argument type="service" id="NuonicSearchHubIntegration\Client\ClientFactory" />
-        </service>
-
         <service id="NuonicSearchHubIntegration\Controller\RedirectingSearchController">
             <argument type="service" id="NuonicSearchHubIntegration\Config\PluginConfigService" />
             <argument type="service" id="Shopware\Storefront\Controller\SearchController" />
-            <argument type="service" id="NuonicSearchHubIntegration\Service\SmartQueryService" />
+            <argument type="service" id="NuonicSearchHubIntegration\Client\ClientFactory" />
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
