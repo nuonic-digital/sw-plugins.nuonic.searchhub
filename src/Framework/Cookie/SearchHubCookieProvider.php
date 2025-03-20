@@ -60,7 +60,7 @@ readonly class SearchHubCookieProvider implements CookieProviderInterface
 
             $cookie['entries'][] = [
                 'snippet_name' => 'NuonicSearchHub.cookie.name',
-                'snippet_description' => 'NuonicSearchHub.cookie.description ',
+                'snippet_description' => 'NuonicSearchHub.cookie.description',
                 'cookie' => 'NuonicSearchHub-js',
                 'value' => '1',
                 'expiration' => '30',
