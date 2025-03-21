@@ -34,7 +34,7 @@
 
     {% if page.hasExtension(extensionName) %}
         {% block component_line_item_type_searchhub_product_number %}
-            { <div class="line-item-product-number" data-product-id="{{ lineItem.payload.productNumber }}">
+            <div class="line-item-product-number" data-product-id="{{ lineItem.payload.productNumber }}">
             {{ 'checkout.cartItemInfoId'|trans|sw_sanitize }} {{ lineItem.payload.productNumber }}
         </div>
         {% endblock %}
