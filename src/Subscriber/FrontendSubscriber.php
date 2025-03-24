@@ -33,7 +33,7 @@ readonly class FrontendSubscriber implements EventSubscriberInterface
 
     public function onRender(GenericPageLoadedEvent $event): void
     {
-        $salesChannelId = null;
+        $salesChannelId = $event->getSalesChannelContext()->getSalesChannelId();
         $page = $event->getPage();
 
         $activeState = $this->config->getBool(ConfigValue::ACTIVE_STATE, $salesChannelId);
