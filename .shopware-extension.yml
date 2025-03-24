@@ -1,13 +1,19 @@
-filename: .shopware-extension.yml
 store:
     availabilities:
         - International
     default_locale: en_GB
     localizations: []
-    categories: []
+    categories:
+        - personalization
     type: extension
     icon: src/Resources/store/icon.png
     automatic_bugfix_version_compatibility: false
+    meta_title:
+        de: ""
+        en: ""
+    meta_description:
+        de: ""
+        en: ""
     description:
         de: file:src/Resources/store/description.de.html
         en: file:src/Resources/store/description.en.html
@@ -15,8 +21,18 @@ store:
         de: file:src/Resources/store/installation_manual.de.html
         en: file:src/Resources/store/installation_manual.en.html
     tags:
-        de: []
-        en: []
+        de:
+            - intelligente Suche
+            - ' KI-Optimierung'
+            - ' Transparenz'
+            - ' einfache Integration'
+            - ' Kostenreduktion'
+        en:
+            - Search optimization
+            - ' Real-time analysis'
+            - ' Search behavior insights'
+            - ' Compatibility'
+            - ' Cost efficiency'
     videos:
         de: []
         en: []
@@ -57,6 +73,7 @@ store:
     faq:
         de: []
         en: []
+    image_directory: src/Resources/store/images
 build:
     zip:
         composer:
@@ -65,9 +82,7 @@ build:
             enabled: true
             enable_es_build_for_admin: false
             enable_es_build_for_storefront: false
-            es_build_disable_sass: false
+            disable_sass: false
             npm_strict: false
-        pack: {}
 changelog:
     enabled: true
-validation: {}
