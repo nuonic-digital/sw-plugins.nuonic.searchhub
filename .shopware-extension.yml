@@ -23,16 +23,16 @@ store:
     tags:
         de:
             - intelligente Suche
-            - ' KI-Optimierung'
-            - ' Transparenz'
-            - ' einfache Integration'
-            - ' Kostenreduktion'
+            - KI-Optimierung
+            - Transparenz
+            - einfache Integration
+            - Kostenreduktion
         en:
             - Search optimization
-            - ' Real-time analysis'
-            - ' Search behavior insights'
-            - ' Compatibility'
-            - ' Cost efficiency'
+            - Real-time analysis
+            - Search behavior insights
+            - Compatibility
+            - Cost efficiency
     videos:
         de: []
         en: []
@@ -44,10 +44,10 @@ store:
             - Relevantere & personalisierte Suchergebnisse
             - Deutliche Reduzierung von Nulltreffern
         en:
-            - 'AI-powered add-on for search optimization '
-            - 'Compatible with any search technology '
-            - 'Automated detection of relevant landing pages '
-            - 'More relevant & personalized search results '
+            - AI-powered add-on for search optimization
+            - Compatible with any search technology
+            - Automated detection of relevant landing pages
+            - More relevant & personalized search results
             - Significant reduction of zero-result pages
     features:
         de:
