@@ -12,6 +12,6 @@ jobs:
     with:
       extensionName: NuonicSearchHub
     secrets:
-      accountUser: ${{ secrets.SHOPWARE_ACCOUNT_MACHINE_USER }}
-      accountPassword: ${{ secrets.SHOPWARE_ACCOUNT_MACHINE_PASSWORD }}
+      clientId: ${{ secrets.SHOPWARE_ACCOUNT_CLIENT_ID }}
+      clientSecret: ${{ secrets.SHOPWARE_ACCOUNT_CLIENT_SECRET }}
       ghToken: ${{ secrets.GITHUB_TOKEN }}
